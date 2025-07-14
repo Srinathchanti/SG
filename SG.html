@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SG Cleaning Services</title>
+  <link href="C:\Users\AULoaner\Desktop\Logo.png" rel="stylesheet"/>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #f8f8f8; color: #333; }
+    header {
+      background: #0a4d68; padding: 10px 20px; color: white;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    }
+    header img { height: 60px; }
+    nav a {
+      margin: 0 10px; color: white;
+      text-decoration: none; font-weight: bold;
+    }
+    section {
+      padding: 40px 20px; max-width: 1000px; margin: auto;
+    }
+    h2 { color: #0a4d68; }
+    .services {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;
+    }
+    .card {
+      background: white; padding: 20px; border-radius: 10px;
+      box-shadow: 0 0 8px #ccc; transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    form input, form select, form button {
+      width: 100%; padding: 10px; margin: 10px 0;
+      border-radius: 5px; border: 1px solid #ccc;
+    }
+    footer {
+      background: #0a4d68; color: white; text-align: center;
+      padding: 15px; position: relative;
+    }
+    .whatsapp-btn {
+      position: fixed; bottom: 20px; right: 20px;
+      background: #25D366; color: white; padding: 15px;
+      border-radius: 50%; font-size: 20px; text-decoration: none;
+    }
+    .phone-info { text-align: center; margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="SG Logo">
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#booking">Booking</a>
+    </nav>
+  </header>
+
+  <section id="home" data-aos="fade-up">
+    <h2>Welcome to SG Cleaning Services</h2>
+    <p>Your one-stop solution for professional car cleaning. We provide reliable, fast, and quality cleaning at your doorstep.</p>
+  </section>
+
+  <section id="services" data-aos="fade-right">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="card" data-aos="zoom-in">
+        <h3>Exterior Wash</h3>
+        <p>Thorough car exterior cleaning with high-pressure water and foam wash.</p>
+      </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="100">
+        <h3>Interior Cleaning</h3>
+        <p>Vacuum, dashboard polish, and complete interior sanitization.</p>
+      </div>
+      <div class="card" data-aos="zoom-in" data-aos-delay="200">
+        <h3>Full Detailing</h3>
+        <p>Deep cleaning for both interior and exterior, restoring shine and freshness.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking" data-aos="fade-left">
+    <h2>Book a Cleaning Slot</h2>
+    <form onsubmit="submitBooking(event)">
+      <input type="text" id="name" placeholder="Your Name" required />
+      <input type="tel" id="phone" placeholder="Phone Number" required />
+      <select id="service" required>
+        <option value="">Select Service</option>
+        <option>Exterior Wash</option>
+        <option>Interior Cleaning</option>
+        <option>Full Detailing</option>
+      </select>
+      <input type="datetime-local" id="datetime" required />
+      <button type="submit">Book Now</button>
+    </form>
+    <div class="phone-info">
+      <p>📞 Call Us: <b>+1 (209)279-6825</b></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 SG Cleaning Services. All rights reserved.</p>
+  </footer>
+
+  <a class="whatsapp-btn" href="https://wa.me/+12092796825" target="_blank">💬</a>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    function submitBooking(event) {
+      event.preventDefault();
+      const name = document.getElementById("name").value.trim();
+      const phone = document.getElementById("phone").value.trim();
+      const service = document.getElementById("service").value;
+      const datetime = document.getElementById("datetime").value;
+      const formattedDate = new Date(datetime).toLocaleString();
+
+      const message = `Hi SG, I want to book a car cleaning service.%0A
+Name: ${name}%0A
+Phone: ${phone}%0A
+Service: ${service}%0A
+Date & Time: ${formattedDate}`;
+
+      const whatsappNumber = "+12092796825"; // Replace with your number
+      const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+      window.open(url, '_blank');
+    }
+  </script>
+</body>
+</html>
