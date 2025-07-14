@@ -160,27 +160,38 @@ header img {
   <a class="whatsapp-btn" href="https://wa.me/+12092796825" target="_blank">💬</a>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init();
+ <script>
+  function submitBooking(event) {
+    event.preventDefault();
 
-    function submitBooking(event) {
-      event.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const phone = document.getElementById("phone").value.trim();
-      const service = document.getElementById("service").value;
-      const datetime = document.getElementById("datetime").value;
-      const formattedDate = new Date(datetime).toLocaleString();
+    const name = document.getElementById("name").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const service = document.getElementById("service").value;
+    const datetime = document.getElementById("datetime").value;
 
-      const message = `Hi SG, I want to book a car cleaning service.%0A
+    if (!datetime) {
+      alert("Please select date & time");
+      return;
+    }
+
+    // Format the datetime-local value
+    const dateObj = new Date(datetime);
+    const formattedDate = dateObj.toLocaleString('en-IN', {
+      dateStyle: 'medium',
+      timeStyle: 'short'
+    });
+
+    const message = `Hi SG, I want to book a car cleaning service.%0A
 Name: ${name}%0A
 Phone: ${phone}%0A
 Service: ${service}%0A
 Date & Time: ${formattedDate}`;
 
-      const whatsappNumber = "+12092796825"; // Replace with your actual WhatsApp number
-      const url = `https://wa.me/${whatsappNumber}?text=${message}`;
-      window.open(url, '_blank');
-    }
-  </script>
+    const whatsappNumber = "+12092796825"; // Your number
+    const url = `https://wa.me/${whatsappNumber}?text=${message}`;
+    window.open(url, '_blank');
+  }
+</script>
+
 </body>
 </html>
